@@ -1,0 +1,33 @@
+{
+  "project": "PollbusterMATLAB",
+  "language": "MATLAB",
+  "delivery_checks": "archive integrity, entry files and static dependency audit only",
+  "matlab_execution": "NOT RUN: MATLAB and Octave unavailable",
+  "numeric_reference_cases": 9,
+  "matlab_assertion_cases": 17,
+  "source_sha256": "a471ca805f9d850b3795f3cf1ac34a58006cd5ea4c289dd1af2784abf4d59873",
+  "files": {
+    "CONTENTS.m": "6f00c241a8b9caeedaedf57863c548aa3e8bc00c84db3d5eb2e8d408e9572b8d",
+    "LISEZ_MOI.txt": "159fdae63eaa9411d78fa0dba1ae266ddfddf5c8f21cb642fde666ff440b1f05",
+    "README_FR.md": "640516daf8be97d67d97c3d3655ae2f4070001244795f3e28578aff169472b10",
+    "data/model.json": "f295f7fbc15219fcb5eaf8ef0028943c60d0df7c43266e171a93c2c855a42456",
+    "data/references.json": "b87d95720fd360cbd3a9c66e646fecebfebe7fc4b79298018f6e7ea6de818aa7",
+    "exemple_backtests.m": "8e39f1da2c115aabb01c6c5a7c4b73160845367278ec19b4aa64322077eb4287",
+    "exemple_sans_GUI.m": "6167c0bcb8f3baaf0f1f4183718fa0a9f1e3c935d0620f1b5919d2712038a023",
+    "pb_build2027.m": "289c22a0849d170f9b4695b8ec87be47a4a0ba1eff402ed6f48009d93fd44ef3",
+    "pb_candidates.m": "c76a9c12db4f8cd60acce9bcccb92f1f3fa51de9a79fdec09bbaf8f610103468",
+    "pb_cells.m": "8f040e64d9799fe979a6aff11f8fba70846d5f7e8333848d22aa2b6b5cda4d48",
+    "pb_core.m": "289003fd6595058785dc408f1b001289212bb956bc991d98800e503b553ecef9",
+    "pb_defaults.m": "cd392e942d9bb95323abcbb43ba20f2c337bcae80c3f52da9834392fc0689240",
+    "pb_drawmap.m": "4aab84441f6f6187462f430b8ffa558b9b675a72162d4200620b1927cdce9958",
+    "pb_engine.m": "4c6d6cd472f63d7f13f8e5b8dca3f8b999d8193cb181c5ea54182373f44c1bc2",
+    "pb_export.m": "7483f0e1c4f0312cefab7fc92469a6e4fb40af3f7b7040805c5972a6e83937c5",
+    "pb_get.m": "107a4bc071cb012a4ec1ae13753b4b658b1c5dbab2802b0384b677ea5b5636ff",
+    "pb_gui.m": "bf8819e1bc60bf59193a1f0720e1b94cb0fde3f3f36342021a1913e8ed863915",
+    "pb_load.m": "783c0dff0383d63887e678426c70a7f8481b8c86e19cec2cbaef50351f43d663",
+    "pb_selftest.m": "9923e62cb7dd4b17bb574ddb00f855382f485eb74a3f2503e1382226a6d4b22d",
+    "pb_simulate.m": "ef0f41c007b4a0371378333d77308f009ac80c505e3053de18809568b09c5f9a",
+    "runPollbuster.m": "89982ef143bf33802ef668a6cf1816f124d6ab2717ac73f8fbae7050e4d38cf0",
+    "tests/README.md": "4adb7a49f9d1f63b4209e259142c0580b1909eff2ef410685f0be43a87184b2f"
+  }
+}

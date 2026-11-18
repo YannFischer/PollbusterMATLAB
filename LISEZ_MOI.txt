@@ -1,0 +1,9 @@
+Ouvrir le dossier PollbusterMATLAB dans MATLAB, puis taper :
+
+    runPollbuster
+
+Verifier le calcul avec :
+
+    pb_selftest
+
+Lire README_FR.md. Code MATLAB natif ; aucune execution MATLAB n'a ete possible avant livraison.

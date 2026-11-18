@@ -1,0 +1,1 @@
+Les tests numeriques sont dans pb_selftest.m a la racine. Executer pb_selftest depuis MATLAB. Aucune execution MATLAB ou Octave n'a ete possible dans l'environnement de generation. Les references sont des sorties numeriques figees du moteur V18 original, pas des scores substitues au calcul MATLAB.
