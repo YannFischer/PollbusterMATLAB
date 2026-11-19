@@ -195,7 +195,7 @@ function app = pb_gui()
     H.mapAxes = axes( ...
         'Parent', H.mapTab, ...
         'Units', 'normalized', ...
-        'Position', [0.10 0.13 0.84 0.73]);
+        'Position', [0.02 0.03 0.96 0.87]);
 
     H.scores = uitable( ...
         H.scoreTab, ...
@@ -261,6 +261,9 @@ function app = pb_gui()
     app.GetConfig = @() getappdata(H.fig, 'PollbusterConfig');
 
     applyModel(model);
+
+    set(H.mapTab, ...
+        'SizeChangedFcn', @resizeMap);
 
     %% Calcul et validation transactionnels
 
@@ -828,6 +831,27 @@ function app = pb_gui()
         drawDetails(selection);
     end
 
+    function resizeMap(~, ~)
+
+        if ~isgraphics(H.fig) || ~isgraphics(H.mapAxes)
+            return
+        end
+
+        if isempty(result)
+            return
+        end
+
+        if getappdata(H.fig, 'PollbusterBusy')
+            return
+        end
+
+        pb_drawmap( ...
+            H.mapAxes, ...
+            resultData, ...
+            result, ...
+            logical(get(H.showPCS, 'Value')));
+    end
+
     function changeDetailedCandidate(varargin)
 
         if isempty(result)
@@ -1095,12 +1119,12 @@ end
 function reservoirs = buildGuiReservoirs(D, model)
     %BUILDGUIRESERVOIRS Reservoirs historiques et familles techniques.
     %
-    % Une famille catalogue_* est un support technique sans voix propres.
+    % Une famille c_* est un support technique sans voix propres.
     % Les rattachements electoraux supplementaires restent dans c.fams.
 
     reservoirs = pb_build2027(D, model.cfg);
 
-    prefix = 'catalogue_';
+    prefix = 'c_';
 
     for index = 1:numel(model.candidates)
         candidate = model.candidates(index);

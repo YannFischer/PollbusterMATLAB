@@ -48,7 +48,7 @@ H11, sans Villepin, avec Attal et Philippe ; thèmes désactivés. C'est une ré
 3. `pb_core` calcule les probabilités d'attraction par catégorie utilisées par V18.
 4. `pb_engine` ancre les profils sur les trajectoires, répartit les réservoirs par catégorie, applique famille/héritage, porosités, usure, thèmes, déplacements et absorption vers l'abstention.
 5. Les scores sont normalisés sur les voix attribuées aux candidats, hors pertes vers l'abstention.
-6. Les coordonnées de carte sont des barycentres des voix simulées de six catégories : agriculture/artisanat, cadres, professions intermédiaires, employés, ouvriers, retraités. Les inactifs restent inclus dans les scores, pas dans les barycentres de la carte.
+6. Les coordonnées de carte sont des barycentres des voix simulées de six catégories : agriculture/artisanat, cadres, professions intermédiaires, employés, ouvriers, retraités.
 7. Le croisement des axes est le barycentre de ces mêmes suffrages à six catégories. La surface des bulles est proportionnelle au score.
 
 **Les X/Y modifiables sont les coordonnées politiques internes d'attraction. Ils ne sont pas les X/Y affichés sur la carte sociale.** Un déplacement politique peut donc produire un déplacement social différent, voire très faible.

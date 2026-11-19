@@ -9,7 +9,7 @@ function [model, report] = pb_importCatalogue(model, D, filename)
     %   - ignore les candidats deja importes ;
     %   - ajoute les autres candidats inactifs ;
     %   - conserve zone, noto et fams du catalogue ;
-    %   - cree un identifiant de famille technique catalogue_* ;
+    %   - cree un identifiant de famille technique c_* ;
     %   - initialise les positions au centre de la zone ;
     %   - ne donne aucune voix propres a cette famille technique.
     %
@@ -82,8 +82,8 @@ function [model, report] = pb_importCatalogue(model, D, filename)
             'Pollbuster:InvalidCatalogueKey', ...
             'Cle de catalogue invalide : %s', key);
 
-        candidateId = ['cat_' key];
-        familyId = ['catalogue_' key];
+        candidateId = key;
+        familyId = ['c_' key];
 
         assert(isvarname(candidateId) && isvarname(familyId), ...
             'Pollbuster:InvalidGeneratedId', ...
@@ -221,6 +221,7 @@ function value = requiredText(entry, field, index)
 end
 
 function [chosenFam, additionalFams] = chooseFam(fams, fallbackFamily)
+
     if isempty(fams)
         chosenFam = fallbackFamily;
         additionalFams = {};
@@ -228,4 +229,5 @@ function [chosenFam, additionalFams] = chooseFam(fams, fallbackFamily)
         chosenFam = fams{1};
         additionalFams = fams(2:end);
     end
+
 end
