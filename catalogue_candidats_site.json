@@ -1,0 +1,476 @@
+[
+  {
+    "key": "philippe",
+    "nom": "Édouard Philippe",
+    "parti": "Horizons",
+    "fonction": "Maire du Havre, ancien Premier ministre",
+    "statut": "déclaré (sept. 2024)",
+    "builtin": "ep"
+  },
+  {
+    "key": "attal",
+    "nom": "Gabriel Attal",
+    "parti": "Renaissance",
+    "fonction": "Ancien Premier ministre, secrétaire général de Renaissance",
+    "statut": "déclaré (22 mai 2026)",
+    "builtin": "ga"
+  },
+  {
+    "key": "becht",
+    "nom": "Olivier Becht",
+    "parti": "« extrême centre »",
+    "fonction": "Député du Haut-Rhin, ancien ministre du commerce extérieur",
+    "statut": "déclaré (24 sept. 2026)",
+    "zone": "Z7",
+    "noto": 0.3,
+    "fams": [
+      "mac"
+    ]
+  },
+  {
+    "key": "lepen",
+    "nom": "Marine Le Pen",
+    "parti": "Rassemblement national",
+    "fonction": "Pourvoi en cassation en cours, éligible à ce stade",
+    "statut": "déclarée (7 juil. 2026)",
+    "builtin": "mlp"
+  },
+  {
+    "key": "melenchon",
+    "nom": "Jean-Luc Mélenchon",
+    "parti": "La France insoumise",
+    "fonction": "Quatrième candidature (21,95 % en 2022)",
+    "statut": "déclaré (3 mai 2026)",
+    "builtin": "jlm"
+  },
+  {
+    "key": "glucksmann",
+    "nom": "Raphaël Glucksmann",
+    "parti": "Place publique",
+    "fonction": "Eurodéputé, vainqueur de la primaire « Choisir 2027 » (66,13 %)",
+    "statut": "désigné (11 oct. 2026)",
+    "builtin": "rg"
+  },
+  {
+    "key": "faure",
+    "nom": "Olivier Faure",
+    "parti": "Parti socialiste",
+    "fonction": "Premier secrétaire du PS, battu à la primaire (14,46 %)",
+    "statut": "battu à la primaire",
+    "zone": "Z4",
+    "noto": 0.45,
+    "fams": [
+      "pp",
+      "hid"
+    ]
+  },
+  {
+    "key": "royal",
+    "nom": "Ségolène Royal",
+    "parti": "sans étiquette (ex-PS)",
+    "fonction": "Candidate en 2007, battue à la primaire (7,62 %)",
+    "statut": "battue à la primaire",
+    "zone": "Z4",
+    "noto": 0.6,
+    "led": 9.5,
+    "ledAn": 2007.0,
+    "fams": [
+      "hid"
+    ]
+  },
+  {
+    "key": "maurel",
+    "nom": "Emmanuel Maurel",
+    "parti": "Gauche républicaine et socialiste",
+    "fonction": "Animateur national de la GRS, battu à la primaire (5,92 %)",
+    "statut": "battu à la primaire",
+    "zone": "Z3",
+    "noto": 0.25,
+    "fams": [
+      "hid"
+    ]
+  },
+  {
+    "key": "guedj",
+    "nom": "Jérôme Guedj",
+    "parti": "Parti socialiste",
+    "fonction": "Député de l’Essonne, battu à la primaire (5,80 %)",
+    "statut": "battu à la primaire",
+    "zone": "Z4",
+    "noto": 0.3,
+    "fams": [
+      "pp",
+      "hid"
+    ]
+  },
+  {
+    "key": "cazeneuve",
+    "nom": "Bernard Cazeneuve",
+    "parti": "La Convention",
+    "fonction": "Ancien Premier ministre, a refusé la primaire",
+    "statut": "déclaré",
+    "zone": "Z4",
+    "noto": 0.6,
+    "fams": [
+      "hid"
+    ]
+  },
+  {
+    "key": "bouamrane",
+    "nom": "Karim Bouamrane",
+    "parti": "Parti socialiste",
+    "fonction": "Maire de Saint-Ouen-sur-Seine, a refusé la primaire",
+    "statut": "déclaré",
+    "zone": "Z4",
+    "noto": 0.3,
+    "fams": [
+      "pp",
+      "hid"
+    ]
+  },
+  {
+    "key": "hollande",
+    "nom": "François Hollande",
+    "parti": "Parti socialiste",
+    "fonction": "Ancien président de la République",
+    "statut": "pressenti",
+    "zone": "Z6",
+    "noto": 1.0,
+    "led": 10.27,
+    "ledAn": 2012.0,
+    "fams": [
+      "pp",
+      "hid"
+    ]
+  },
+  {
+    "key": "tondelier",
+    "nom": "Marine Tondelier",
+    "parti": "Les Écologistes",
+    "fonction": "Candidature autonome validée par le parti",
+    "statut": "déclarée",
+    "builtin": "mt"
+  },
+  {
+    "key": "batho",
+    "nom": "Delphine Batho",
+    "parti": "Génération Écologie",
+    "fonction": "Ancienne ministre",
+    "statut": "déclarée",
+    "zone": "Z5",
+    "noto": 0.25,
+    "fams": [
+      "ecolo",
+      "jad"
+    ]
+  },
+  {
+    "key": "ruffin",
+    "nom": "François Ruffin",
+    "parti": "Debout !",
+    "fonction": "Député de la Somme, maintient sa candidature avec ou sans primaire",
+    "statut": "déclaré",
+    "zone": "Z2",
+    "noto": 0.55,
+    "fams": [
+      "mel"
+    ]
+  },
+  {
+    "key": "roussel",
+    "nom": "Fabien Roussel",
+    "parti": "Parti communiste",
+    "fonction": "Secrétaire national, candidature validée par les adhérents (6 sept.)",
+    "statut": "déclaré",
+    "builtin": "fr"
+  },
+  {
+    "key": "retailleau",
+    "nom": "Bruno Retailleau",
+    "parti": "Les Républicains",
+    "fonction": "Désigné par les adhérents (73,8 %, 19 avril 2026)",
+    "statut": "désigné",
+    "builtin": "br"
+  },
+  {
+    "key": "lisnard",
+    "nom": "David Lisnard",
+    "parti": "Nouvelle Énergie",
+    "fonction": "Maire de Cannes, a quitté LR le 31 mars, veut une primaire ouverte",
+    "statut": "déclaré (31 mars 2026)",
+    "zone": "Z9",
+    "noto": 0.35,
+    "fams": [
+      "pec"
+    ]
+  },
+  {
+    "key": "bertrand",
+    "nom": "Xavier Bertrand",
+    "parti": "Les Républicains",
+    "fonction": "Président de la Région Hauts-de-France, refuse toute primaire",
+    "statut": "déclaré (27 août 2026)",
+    "zone": "Z9",
+    "noto": 0.6,
+    "fams": [
+      "pec"
+    ]
+  },
+  {
+    "key": "zemmour",
+    "nom": "Éric Zemmour",
+    "parti": "Reconquête !",
+    "fonction": "Annoncé sur BFM TV le 17 sept., déclaration formelle attendue",
+    "statut": "annoncé",
+    "builtin": "ez"
+  },
+  {
+    "key": "arthaud",
+    "nom": "Nathalie Arthaud",
+    "parti": "Lutte ouvrière",
+    "fonction": "Quatrième candidature",
+    "statut": "déclarée",
+    "builtin": "na"
+  },
+  {
+    "key": "nda",
+    "nom": "Nicolas Dupont-Aignan",
+    "parti": "Debout la France",
+    "fonction": "",
+    "statut": "déclaré",
+    "builtin": "nda"
+  },
+  {
+    "key": "philippot",
+    "nom": "Florian Philippot",
+    "parti": "Les Patriotes",
+    "fonction": "Ancien vice-président du FN",
+    "statut": "déclaré",
+    "zone": "Z10",
+    "noto": 0.3,
+    "led": 0.15,
+    "ledAn": 2019.0,
+    "fams": [
+      "nda"
+    ]
+  },
+  {
+    "key": "asselineau",
+    "nom": "François Asselineau",
+    "parti": "Union populaire républicaine",
+    "fonction": "Candidat en 2017 (0,92 %)",
+    "statut": "déclaré",
+    "zone": "Z10",
+    "noto": 0.25,
+    "led": 0.33,
+    "ledAn": 2017.0,
+    "fams": [
+      "nda"
+    ]
+  },
+  {
+    "key": "egger",
+    "nom": "Clara Egger",
+    "parti": "Solution démocratique",
+    "fonction": "Politiste, démocratie directe",
+    "statut": "déclarée",
+    "zone": "Z6",
+    "noto": 0.2
+  },
+  {
+    "key": "markovic",
+    "nom": "Mira Markovic",
+    "parti": "Parti animaliste",
+    "fonction": "",
+    "statut": "déclarée",
+    "zone": "Z5",
+    "noto": 0.2
+  },
+  {
+    "key": "mikolajczak",
+    "nom": "Antoine Mikolajczak",
+    "parti": "Équinoxe",
+    "fonction": "",
+    "statut": "déclaré",
+    "zone": "Z5",
+    "noto": 0.2
+  },
+  {
+    "key": "kazib",
+    "nom": "Anasse Kazib",
+    "parti": "Révolution permanente",
+    "fonction": "Cheminot, syndicaliste",
+    "statut": "déclaré",
+    "zone": "Z1",
+    "noto": 0.3,
+    "fams": [
+      "pou"
+    ]
+  },
+  {
+    "key": "labib",
+    "nom": "Selma Labib",
+    "parti": "NPA-Révolutionnaires",
+    "fonction": "",
+    "statut": "déclarée",
+    "zone": "Z1",
+    "noto": 0.2,
+    "fams": [
+      "pou"
+    ]
+  },
+  {
+    "key": "branco",
+    "nom": "Juan Branco",
+    "parti": "Les Ruches",
+    "fonction": "Avocat, essayiste",
+    "statut": "déclaré",
+    "zone": "Z10",
+    "noto": 0.4,
+    "fams": [
+      "nda"
+    ]
+  },
+  {
+    "key": "massard",
+    "nom": "Lydie Massard",
+    "parti": "Union démocratique bretonne",
+    "fonction": "",
+    "statut": "déclarée",
+    "zone": "Z5",
+    "noto": 0.2
+  },
+  {
+    "key": "mathieu",
+    "nom": "Benoît Mathieu",
+    "parti": "sans parti",
+    "fonction": "Ingénieur, tour de France à vélo",
+    "statut": "déclaré",
+    "zone": "Z6",
+    "noto": 0.2
+  },
+  {
+    "key": "lalanne",
+    "nom": "Francis Lalanne",
+    "parti": "sans parti",
+    "fonction": "Chanteur",
+    "statut": "déclaré",
+    "zone": "Z10",
+    "noto": 0.3
+  },
+  {
+    "key": "polony",
+    "nom": "Natacha Polony",
+    "parti": "sans parti",
+    "fonction": "Journaliste et essayiste",
+    "statut": "annoncée (14 oct. 2026, France Inter)",
+    "zone": "Z10",
+    "noto": 0.75
+  },
+  {
+    "key": "bardella",
+    "nom": "Jordan Bardella",
+    "parti": "Rassemblement national",
+    "fonction": "Président du RN, tête de liste 2024 (31,4 %)",
+    "statut": "non déclaré (si Le Pen inéligible)",
+    "zone": "Z11",
+    "noto": 0.9,
+    "led": 7.77,
+    "ledAn": 2024.0,
+    "fams": [
+      "lep"
+    ]
+  },
+  {
+    "key": "bayrou",
+    "nom": "François Bayrou",
+    "parti": "MoDem",
+    "fonction": "Ancien Premier ministre",
+    "statut": "non déclaré",
+    "zone": "Z6",
+    "noto": 0.7,
+    "led": 3.28,
+    "ledAn": 2012.0,
+    "fams": [
+      "mac"
+    ]
+  },
+  {
+    "key": "darmanin",
+    "nom": "Gérald Darmanin",
+    "parti": "Renaissance",
+    "fonction": "Ministre, ancien ministre de l’Intérieur",
+    "statut": "non déclaré",
+    "zone": "Z7",
+    "noto": 0.55,
+    "fams": [
+      "mac"
+    ]
+  },
+  {
+    "key": "wauquiez",
+    "nom": "Laurent Wauquiez",
+    "parti": "Les Républicains",
+    "fonction": "Président du groupe LR à l’Assemblée",
+    "statut": "non déclaré",
+    "zone": "Z9",
+    "noto": 0.55,
+    "fams": [
+      "pec"
+    ]
+  },
+  {
+    "key": "knafo",
+    "nom": "Sarah Knafo",
+    "parti": "Reconquête !",
+    "fonction": "Eurodéputée",
+    "statut": "non déclarée",
+    "zone": "Z12",
+    "noto": 0.35,
+    "fams": [
+      "zem"
+    ]
+  },
+  {
+    "key": "marechal",
+    "nom": "Marion Maréchal",
+    "parti": "Identité-Libertés",
+    "fonction": "Eurodéputée",
+    "statut": "non déclarée",
+    "zone": "Z12",
+    "noto": 0.45,
+    "led": 1.35,
+    "ledAn": 2024.0,
+    "fams": [
+      "zem"
+    ]
+  },
+  {
+    "key": "besancenot",
+    "nom": "Olivier Besancenot",
+    "parti": "NPA",
+    "fonction": "Candidat en 2002 et 2007",
+    "statut": "non déclaré",
+    "zone": "Z1",
+    "noto": 0.35,
+    "led": 1.5,
+    "ledAn": 2007.0,
+    "fams": [
+      "pou"
+    ]
+  },
+  {
+    "key": "poutou",
+    "nom": "Philippe Poutou",
+    "parti": "NPA",
+    "fonction": "Candidat en 2012, 2017 et 2022",
+    "statut": "non déclaré",
+    "zone": "Z1",
+    "noto": 0.3,
+    "led": 0.27,
+    "ledAn": 2022.0,
+    "fams": [
+      "pou"
+    ]
+  }
+]
