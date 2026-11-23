@@ -27,6 +27,9 @@ function rs = pb_build2027(D, cfg)
         'zem', 1, ...
         'nda', 1, ...
         'las', 0);
+    % Reservoir 'rn' (electorat RN-Bardella 2024), optionnel : cfg.bardella.enabled.
+    bardellaCfg = pb_get(cfg, 'bardella', struct());
+    bardellaOn = pb_get(bardellaCfg, 'enabled', false);
 
     for ii = 1:numel(names)
         id = names{ii};
@@ -126,6 +129,15 @@ function rs = pb_build2027(D, cfg)
     pull('Z4', 'pp', true);
     pull('Z5', 'ecolo', true);
     pull('Z3', 'pcf', true);
+
+    % Meme construction que pp, ecolo et pcf : tout ce qui flotte dans Z11 (electeurs
+    % d'autres familles ayant vote RN en 2024) forme un reservoir 'rn' distinct, avec
+    % fid = masse, fidP = 0 et orig = familles d'origine. 'lep' garde alors seulement
+    % ses propres electeurs.
+    if bardellaOn
+        pull('Z11', 'rn', true);
+    end
+
     ensure('dv', 'Z8');
 
     if S.SOCLE24
@@ -187,28 +199,26 @@ function rs = pb_build2027(D, cfg)
             leakZones = fieldnames(leak);
             leakShare = zeros(1, numel(leakZones));
 
-            for jj = 1:numel(leakZones)
-                leakShare(jj) = min(1, max(0, leak.(leakZones{jj})));
-            end
+        for jj = 1:numel(leakZones)
+            leakShare(jj) = min(1, max(0, leak.(leakZones{jj})));
+        end
 
-            if sum(leakShare) > 1
-                leakShare = leakShare / sum(leakShare);
-            end
+        if sum(leakShare) > 1
+            leakShare = leakShare / sum(leakShare);
+        end
 
-            total = rs(kb).fid;
+        total = rs(kr).fid;
 
-            for jj = 1:numel(leakZones)
-                rs(kb).flot = addField(rs(kb).flot, leakZones{jj}, total * leakShare(jj));
-            end
+        for jj = 1:numel(leakZones)
+            rs(kr).flot = addField(rs(kr).flot, leakZones{jj}, total * leakShare(jj));
+        end
 
-            keep = 1 - sum(leakShare);
-            rs(kb).fid = total * keep;
-            oids = fieldnames(rs(kb).orig);
+        keep = 1 - sum(leakShare);
+        rs(kr).fid = total * keep;
+        oids = fieldnames(rs(kr).orig);
 
-            for jj = 1:numel(oids)
-                rs(kb).orig.(oids{jj}) = rs(kb).orig.(oids{jj}) * keep;
-            end
-
+        for jj = 1:numel(oids)
+            rs(kr).orig.(oids{jj}) = rs(kr).orig.(oids{jj}) * keep;
         end
 
     end
