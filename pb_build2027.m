@@ -136,38 +136,77 @@ function rs = pb_build2027(D, cfg)
 
     end
 
-    % Reservoir Bardella (optionnel) : une part de la masse d'origine du reservoir
-    % 'lep' (electeurs venus d'autres familles) devient flottante dans la zone de
-    % la famille d'origine : zem -> Z12 (Zemmour), pec -> Z9 (LR et Lisnard),
-    % mac -> Z8 (centre droit). Masse totale conservee. Desactive par defaut.
-    % Exemple : cfg.bardella = struct('enabled', true, 'leak', struct('zem', .5, 'pec', .4, 'mac', .2));
+    % Reservoir RN-Bardella 'bar' (optionnel, desactive par defaut).
+    % Le reservoir RN 'lep' est scinde en deux :
+    %   - 'lep' : noyau historique (electeurs Le Pen 2022 restes RN) ;
+    %   - 'bar' : electeurs d'autres familles (Macron, Pecresse, Zemmour, ...) venus
+    %             au RN en 2024, plus eventuellement une part du noyau (baseShare).
+    % Une fraction de 'bar' est flottante dans Z12 (Zemmour), Z9 (LR et Lisnard) et
+    % Z8 (centre droit) : il est donc plus permeable que 'lep'. Masse totale conservee.
+    % Exemple :
+    %   cfg.bardella = struct('enabled', true, 'baseShare', 0, 'defaultShare', 1, ...
+    %       'origShare', struct('zem', 1), ...
+    %       'leak', struct('Z12', .25, 'Z9', .20, 'Z8', .05));
+    % Pour que Le Pen/Bardella puisse heriter de 'bar', pb_simulate ajoute 'bar'
+    % aux familles des candidats de la famille 'lep'.
     B = pb_get(cfg, 'bardella', struct());
 
     if pb_get(B, 'enabled', false)
         kl = find(strcmp({rs.id}, 'lep'), 1);
 
         if ~isempty(kl)
-            leak = pb_get(B, 'leak', struct('zem', 0.5, 'pec', 0.4, 'mac', 0.2));
-            target = struct('zem', 'Z12', 'pec', 'Z9', 'mac', 'Z8');
-            leakIds = fieldnames(leak);
+            kb = ensure('bar', 'Z11');
+            origShare = pb_get(B, 'origShare', struct());
+            defaultShare = pb_get(B, 'defaultShare', 1);
+            baseShare = min(1, max(0, pb_get(B, 'baseShare', 0)));
+            oids = fieldnames(rs(kl).orig);
 
-            for jj = 1:numel(leakIds)
-                oid = leakIds{jj};
-
-                if ~isfield(target, oid)
-                    continue
-                end
-
-                m0 = pb_get(rs(kl).orig, oid, 0);
-
-                if m0 <= 0
-                    continue
-                end
-
-                m = m0 * min(1, max(0, leak.(oid)));
+            for jj = 1:numel(oids)
+                oid = oids{jj};
+                m0 = rs(kl).orig.(oid);
+                m = m0 * min(1, max(0, pb_get(origShare, oid, defaultShare)));
                 rs(kl).orig.(oid) = m0 - m;
                 rs(kl).fid = rs(kl).fid - m;
-                rs(kl).flot = addField(rs(kl).flot, target.(oid), m);
+                rs(kb).orig = addField(rs(kb).orig, oid, m);
+                rs(kb).fid = rs(kb).fid + m;
+            end
+
+            origLeft = 0;
+            oids = fieldnames(rs(kl).orig);
+
+            for jj = 1:numel(oids)
+                origLeft = origLeft + rs(kl).orig.(oids{jj});
+            end
+
+            baseMass = max(0, rs(kl).fid - rs(kl).fidP - origLeft);
+            mb = baseShare * baseMass;
+            rs(kl).fid = rs(kl).fid - mb;
+            rs(kb).fid = rs(kb).fid + mb;
+
+            leak = pb_get(B, 'leak', struct('Z12', 0.25, 'Z9', 0.20, 'Z8', 0.05));
+            leakZones = fieldnames(leak);
+            leakShare = zeros(1, numel(leakZones));
+
+            for jj = 1:numel(leakZones)
+                leakShare(jj) = min(1, max(0, leak.(leakZones{jj})));
+            end
+
+            if sum(leakShare) > 1
+                leakShare = leakShare / sum(leakShare);
+            end
+
+            total = rs(kb).fid;
+
+            for jj = 1:numel(leakZones)
+                rs(kb).flot = addField(rs(kb).flot, leakZones{jj}, total * leakShare(jj));
+            end
+
+            keep = 1 - sum(leakShare);
+            rs(kb).fid = total * keep;
+            oids = fieldnames(rs(kb).orig);
+
+            for jj = 1:numel(oids)
+                rs(kb).orig.(oids{jj}) = rs(kb).orig.(oids{jj}) * keep;
             end
 
         end
