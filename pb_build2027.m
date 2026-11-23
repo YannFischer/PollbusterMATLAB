@@ -27,9 +27,6 @@ function rs = pb_build2027(D, cfg)
         'zem', 1, ...
         'nda', 1, ...
         'las', 0);
-    % Reservoir 'rn' (electorat RN-Bardella 2024), optionnel : cfg.bardella.enabled.
-    bardellaCfg = pb_get(cfg, 'bardella', struct());
-    bardellaOn = pb_get(bardellaCfg, 'enabled', false);
 
     for ii = 1:numel(names)
         id = names{ii};
@@ -42,11 +39,9 @@ function rs = pb_build2027(D, cfg)
         q = max(0, (S.P_RET - r) / (1 - r)); owned = 0;
 
         for j = 1:numel(lists)
-
             if any(strcmp(own, lists{j}))
                 owned = owned + a(j);
             end
-
         end
 
         owned = owned / sum(a);
@@ -66,7 +61,6 @@ function rs = pb_build2027(D, cfg)
 
                 rs(k).flot = addField(rs(k).flot, z, mass);
             end
-
         end
 
         if ischar(S.LOYAL)
@@ -95,7 +89,6 @@ function rs = pb_build2027(D, cfg)
 
             rs(k).flot = addField(rs(k).flot, z, u * (1 - loyal) * a(j) / sum(a));
         end
-
     end
 
     for cc = {'pou', 'art'}
@@ -110,11 +103,9 @@ function rs = pb_build2027(D, cfg)
     den = 0;
 
     for j = 1:numel(lists)
-
         if ~isempty(pb_get(X.listzones, lists{j}, ''))
             den = den + distribution(j);
         end
-
     end
 
     for j = 1:numel(lists)
@@ -123,60 +114,19 @@ function rs = pb_build2027(D, cfg)
         if ~isempty(z)
             rs(k).flot = addField(rs(k).flot, z, 2.1 * distribution(j) / den);
         end
-
     end
 
     pull('Z4', 'pp', true);
     pull('Z5', 'ecolo', true);
     pull('Z3', 'pcf', true);
-
-    % Meme construction que pp, ecolo et pcf : tout ce qui flotte dans Z11 (electeurs
-    % d'autres familles ayant vote RN en 2024) forme un reservoir 'rn' distinct, avec
-    % fid = masse, fidP = 0 et orig = familles d'origine. 'lep' garde alors seulement
-    % ses propres electeurs.
-    if bardellaOn
-        pull('Z11', 'rn', true);
-    end
-
+    % rn : electeurs d'autres familles ayant vote RN en 2024, meme construction que pp/ecolo/pcf.
+    pull('Z11', 'rn', true);
     ensure('dv', 'Z8');
 
     if S.SOCLE24
-
         for pair = {'Z2', 'mel'; 'Z7', 'mac'; 'Z9', 'pec'; 'Z11', 'lep'; 'Z12', 'zem'}'
             pull(pair{1}, pair{2}, false);
         end
-
-    end
-
-    kr = find(strcmp({rs.id}, 'rn'), 1);
-
-    if bardellaOn && ~isempty(kr)
-        leak = pb_get(bardellaCfg, 'leak', struct());
-        leakZones = fieldnames(leak);
-        leakShare = zeros(1, numel(leakZones));
-
-        for jj = 1:numel(leakZones)
-            leakShare(jj) = min(1, max(0, leak.(leakZones{jj})));
-        end
-
-        if sum(leakShare) > 1
-            leakShare = leakShare / sum(leakShare);
-        end
-
-        total = rs(kr).fid;
-
-        for jj = 1:numel(leakZones)
-            rs(kr).flot = addField(rs(kr).flot, leakZones{jj}, total * leakShare(jj));
-        end
-
-        keep = 1 - sum(leakShare);
-        rs(kr).fid = total * keep;
-        oids = fieldnames(rs(kr).orig);
-
-        for jj = 1:numel(oids)
-            rs(kr).orig.(oids{jj}) = rs(kr).orig.(oids{jj}) * keep;
-        end
-
     end
 
     for j = 1:numel(rs)
@@ -186,13 +136,10 @@ function rs = pb_build2027(D, cfg)
         rs(j).fidP = rs(j).fidP * scale;
 
         for field = {'flot', 'orig'}, fs = fieldnames(rs(j).(field{1}));
-
             for k = 1:numel(fs)
                 rs(j).(field{1}).(fs{k}) = rs(j).(field{1}).(fs{k}) * scale;
             end
-
         end
-
     end
 
     function k = ensure(id, z)
@@ -205,7 +152,6 @@ function rs = pb_build2027(D, cfg)
             rs(end + 1, 1) = r0;
             k = numel(rs);
         end
-
     end
 
     function pull(z, id, replace)
@@ -224,7 +170,6 @@ function rs = pb_build2027(D, cfg)
 
                 rs(kk).flot = rmfield(rs(kk).flot, z);
             end
-
         end
 
         kk = ensure(id, z);
@@ -241,11 +186,8 @@ function rs = pb_build2027(D, cfg)
             for jj = 1:numel(fs)
                 rs(kk).orig = addField(rs(kk).orig, fs{jj}, orig.(fs{jj}));
             end
-
         end
-
     end
-
 end
 
 function r = emptyRes()
