@@ -136,18 +136,18 @@ function rs = pb_build2027(D, cfg)
 
     end
 
-    % Reservoir RN-Bardella 'bar' (optionnel, desactive par defaut).
+    % Reservoir RN-Bardella 'rn' (optionnel, desactive par defaut).
     % Le reservoir RN 'lep' est scinde en deux :
     %   - 'lep' : noyau historique (electeurs Le Pen 2022 restes RN) ;
-    %   - 'bar' : electeurs d'autres familles (Macron, Pecresse, Zemmour, ...) venus
+    %   - 'rn' : electeurs d'autres familles (Macron, Pecresse, Zemmour, ...) venus
     %             au RN en 2024, plus eventuellement une part du noyau (baseShare).
-    % Une fraction de 'bar' est flottante dans Z12 (Zemmour), Z9 (LR et Lisnard) et
+    % Une fraction de 'rn' est flottante dans Z12 (Zemmour), Z9 (LR et Lisnard) et
     % Z8 (centre droit) : il est donc plus permeable que 'lep'. Masse totale conservee.
     % Exemple :
     %   cfg.bardella = struct('enabled', true, 'baseShare', 0, 'defaultShare', 1, ...
     %       'origShare', struct('zem', 1), ...
     %       'leak', struct('Z12', .25, 'Z9', .20, 'Z8', .05));
-    % Pour que Le Pen/Bardella puisse heriter de 'bar', pb_simulate ajoute 'bar'
+    % Pour que Le Pen/Bardella puisse heriter de 'rn', pb_simulate ajoute 'rn'
     % aux familles des candidats de la famille 'lep'.
     B = pb_get(cfg, 'bardella', struct());
 
@@ -155,7 +155,7 @@ function rs = pb_build2027(D, cfg)
         kl = find(strcmp({rs.id}, 'lep'), 1);
 
         if ~isempty(kl)
-            kb = ensure('bar', 'Z11');
+            kb = ensure('rn', 'Z11');
             origShare = pb_get(B, 'origShare', struct());
             defaultShare = pb_get(B, 'defaultShare', 1);
             baseShare = min(1, max(0, pb_get(B, 'baseShare', 0)));
