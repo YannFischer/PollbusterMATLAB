@@ -136,6 +136,44 @@ function rs = pb_build2027(D, cfg)
 
     end
 
+    % Reservoir Bardella (optionnel) : une part de la masse d'origine du reservoir
+    % 'lep' (electeurs venus d'autres familles) devient flottante dans la zone de
+    % la famille d'origine : zem -> Z12 (Zemmour), pec -> Z9 (LR et Lisnard),
+    % mac -> Z8 (centre droit). Masse totale conservee. Desactive par defaut.
+    % Exemple : cfg.bardella = struct('enabled', true, 'leak', struct('zem', .5, 'pec', .4, 'mac', .2));
+    B = pb_get(cfg, 'bardella', struct());
+
+    if pb_get(B, 'enabled', false)
+        kl = find(strcmp({rs.id}, 'lep'), 1);
+
+        if ~isempty(kl)
+            leak = pb_get(B, 'leak', struct('zem', 0.5, 'pec', 0.4, 'mac', 0.2));
+            target = struct('zem', 'Z12', 'pec', 'Z9', 'mac', 'Z8');
+            leakIds = fieldnames(leak);
+
+            for jj = 1:numel(leakIds)
+                oid = leakIds{jj};
+
+                if ~isfield(target, oid)
+                    continue
+                end
+
+                m0 = pb_get(rs(kl).orig, oid, 0);
+
+                if m0 <= 0
+                    continue
+                end
+
+                m = m0 * min(1, max(0, leak.(oid)));
+                rs(kl).orig.(oid) = m0 - m;
+                rs(kl).fid = rs(kl).fid - m;
+                rs(kl).flot = addField(rs(kl).flot, target.(oid), m);
+            end
+
+        end
+
+    end
+
     for j = 1:numel(rs)
         ov = pb_get(cfg.reservoirOverrides, rs(j).id, struct());
         scale = pb_get(ov, 'scale', 1);
