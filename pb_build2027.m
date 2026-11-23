@@ -148,56 +148,12 @@ function rs = pb_build2027(D, cfg)
 
     end
 
-    % Reservoir RN-Bardella 'rn' (optionnel, desactive par defaut).
-    % Le reservoir RN 'lep' est scinde en deux :
-    %   - 'lep' : noyau historique (electeurs Le Pen 2022 restes RN) ;
-    %   - 'rn' : electeurs d'autres familles (Macron, Pecresse, Zemmour, ...) venus
-    %             au RN en 2024, plus eventuellement une part du noyau (baseShare).
-    % Une fraction de 'rn' est flottante dans Z12 (Zemmour), Z9 (LR et Lisnard) et
-    % Z8 (centre droit) : il est donc plus permeable que 'lep'. Masse totale conservee.
-    % Exemple :
-    %   cfg.bardella = struct('enabled', true, 'baseShare', 0, 'defaultShare', 1, ...
-    %       'origShare', struct('zem', 1), ...
-    %       'leak', struct('Z12', .25, 'Z9', .20, 'Z8', .05));
-    % Pour que Le Pen/Bardella puisse heriter de 'rn', pb_simulate ajoute 'rn'
-    % aux familles des candidats de la famille 'lep'.
-    B = pb_get(cfg, 'bardella', struct());
+    kr = find(strcmp({rs.id}, 'rn'), 1);
 
-    if pb_get(B, 'enabled', false)
-        kl = find(strcmp({rs.id}, 'lep'), 1);
-
-        if ~isempty(kl)
-            kb = ensure('rn', 'Z11');
-            origShare = pb_get(B, 'origShare', struct());
-            defaultShare = pb_get(B, 'defaultShare', 1);
-            baseShare = min(1, max(0, pb_get(B, 'baseShare', 0)));
-            oids = fieldnames(rs(kl).orig);
-
-            for jj = 1:numel(oids)
-                oid = oids{jj};
-                m0 = rs(kl).orig.(oid);
-                m = m0 * min(1, max(0, pb_get(origShare, oid, defaultShare)));
-                rs(kl).orig.(oid) = m0 - m;
-                rs(kl).fid = rs(kl).fid - m;
-                rs(kb).orig = addField(rs(kb).orig, oid, m);
-                rs(kb).fid = rs(kb).fid + m;
-            end
-
-            origLeft = 0;
-            oids = fieldnames(rs(kl).orig);
-
-            for jj = 1:numel(oids)
-                origLeft = origLeft + rs(kl).orig.(oids{jj});
-            end
-
-            baseMass = max(0, rs(kl).fid - rs(kl).fidP - origLeft);
-            mb = baseShare * baseMass;
-            rs(kl).fid = rs(kl).fid - mb;
-            rs(kb).fid = rs(kb).fid + mb;
-
-            leak = pb_get(B, 'leak', struct('Z12', 0.25, 'Z9', 0.20, 'Z8', 0.05));
-            leakZones = fieldnames(leak);
-            leakShare = zeros(1, numel(leakZones));
+    if bardellaOn && ~isempty(kr)
+        leak = pb_get(bardellaCfg, 'leak', struct());
+        leakZones = fieldnames(leak);
+        leakShare = zeros(1, numel(leakZones));
 
         for jj = 1:numel(leakZones)
             leakShare(jj) = min(1, max(0, leak.(leakZones{jj})));
